@@ -1,5 +1,5 @@
 package urmi.petclinics.springpetclinic.model;
 
-public class PetType {
+public class PetType extends BaseEntity {
 
 }

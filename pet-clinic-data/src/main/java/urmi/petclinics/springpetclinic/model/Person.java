@@ -1,7 +1,11 @@
 package urmi.petclinics.springpetclinic.model;
 
-public class Person {
+public class Person extends BaseEntity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8314456677110935145L;
 	private String firstName;
 	private String lastName;
 	

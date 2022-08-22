@@ -16,12 +16,12 @@ public abstract class AbstractionMapService<T, ID>  {
 	}
 
 	T findById(ID id) {
-		T object = map.get(id);   
+		T object = map.get(id);   //this method will return a model find by id from map. (here map is like database)
 		return object;
 	}
 	
 	T save(ID id, T object) {
-		map.put(id, object);
+		map.put(id, object);  	//this method save  key(id) and value(object) in map.
 		return object;
 	}
 	

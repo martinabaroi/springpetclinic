@@ -2,11 +2,16 @@ package urmi.petclinics.springpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Service;
+
 import urmi.petclinics.springpetclinic.model.Owner;
 import urmi.petclinics.springpetclinic.model.Pet;
 import urmi.petclinics.springpetclinic.services.CrudService;
 import urmi.petclinics.springpetclinic.services.PetService;
 
+
+
+@Service
 public class PetServiceMap extends AbstractionMapService<Pet, Long> implements PetService {
 
 	@Override

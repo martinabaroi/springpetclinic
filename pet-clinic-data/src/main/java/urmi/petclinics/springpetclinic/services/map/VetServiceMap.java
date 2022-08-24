@@ -5,8 +5,9 @@ import java.util.Set;
 import urmi.petclinics.springpetclinic.model.Pet;
 import urmi.petclinics.springpetclinic.model.Vet;
 import urmi.petclinics.springpetclinic.services.CrudService;
+import urmi.petclinics.springpetclinic.services.VetService;
 
-public class VetServiceMap extends AbstractionMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractionMapService<Vet, Long> implements VetService {
 
 	@Override
 	public Vet findById(Long id) {

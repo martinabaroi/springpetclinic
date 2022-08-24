@@ -4,8 +4,9 @@ import java.util.Set;
 
 import urmi.petclinics.springpetclinic.model.Owner;
 import urmi.petclinics.springpetclinic.services.CrudService;
+import urmi.petclinics.springpetclinic.services.OwnerService;
 
-public class OwnerServiceMap extends AbstractionMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractionMapService<Owner, Long> implements OwnerService {
 
 	@Override
 	public Owner findById(Long id) {
@@ -34,6 +35,12 @@ public class OwnerServiceMap extends AbstractionMapService<Owner, Long> implemen
 	@Override
 	public void deleteById(Long id) {
 		super.deleteById(id);
+	}
+
+	@Override
+	public Owner findByLastName(String lastName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

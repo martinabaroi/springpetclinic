@@ -21,9 +21,13 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	private final OwnerService ownerService;    //interface 
 	private final VetService vetService;
 	
-	public DataLoader() {
-		ownerService = new OwnerServiceMap();  //in interface we put implement class
-		vetService  = new VetServiceMap();
+	public DataLoader(OwnerService ownerService, VetService vetService ) {
+		this.ownerService = ownerService; //here we just inject and by@service annotation spring put ownerservicemap here.
+		this.vetService = vetService;
+		
+//		ownerService = new OwnerServiceMap();  //in interface we put implement class //this time in ownerservicemap wasnt @service annotation,
+												//so we have to create by new.
+//		vetService  = new VetServiceMap();
 		
 	}
 	

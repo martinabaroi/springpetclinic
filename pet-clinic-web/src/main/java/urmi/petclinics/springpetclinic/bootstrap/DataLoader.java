@@ -35,32 +35,27 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		Owner owner1 = new Owner();
-		owner1.setId(1L);
 		owner1.setFirstName("urmi");
 		owner1.setLastName("baroi");
-		
 		ownerService.save(owner1);
 		
 		Owner owner2 = new Owner();
-		owner2.setId(2L);
 		owner2.setFirstName("sunny");
 		owner2.setLastName("pereira");
-		
-		
-		
 		ownerService.save(owner2);
+		
+//		Owner owner3 = null;
+//		ownerService.save(owner3); //exception will be thrown. we didnt catch that exception so app wont run again. 
 		
 		System.out.println("Loaded owners");
 		
 		Vet vet1 = new Vet();
-		vet1.setId(1L);
 		vet1.setFirstName("pussy");
 		vet1.setLastName("dog");
 		
 		vetService.save(vet1);
 		
 		Vet vet2 = new Vet();
-		vet2.setId(2L);
 		vet2.setFirstName("lussy");
 		vet2.setLastName("cat");
 		

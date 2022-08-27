@@ -36,7 +36,7 @@ public abstract class AbstractionMapService<T extends BaseEntity, ID extends Lon
 		  	//this method save  key(id) and value(object) in map.
 		}
 		else {	//if Object object3 = null; we make a null object than exception will throw.
-			throw new RuntimeException("object can not be null"); //app will be off because throw this exception didnt catch
+			throw new RuntimeException("object can not be null"); //app will be off because we throw this exception didnt catch
 		}
 		
 		return object;

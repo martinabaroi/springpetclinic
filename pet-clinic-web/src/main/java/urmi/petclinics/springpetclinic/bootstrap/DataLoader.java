@@ -4,8 +4,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import urmi.petclinics.springpetclinic.model.Owner;
+import urmi.petclinics.springpetclinic.model.PetType;
 import urmi.petclinics.springpetclinic.model.Vet;
 import urmi.petclinics.springpetclinic.services.OwnerService;
+import urmi.petclinics.springpetclinic.services.PetTypeService;
 import urmi.petclinics.springpetclinic.services.VetService;
 import urmi.petclinics.springpetclinic.services.map.OwnerServiceMap;
 import urmi.petclinics.springpetclinic.services.map.VetServiceMap;
@@ -20,10 +22,12 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 
 	private final OwnerService ownerService;    //interface 
 	private final VetService vetService;
+	private final PetTypeService petTypeService;
 	
-	public DataLoader(OwnerService ownerService, VetService vetService ) {
+	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService ) {
 		this.ownerService = ownerService; //here we just inject and by@service annotation spring put ownerservicemap here.
 		this.vetService = vetService;
+		this.petTypeService = petTypeService;
 		
 //		ownerService = new OwnerServiceMap();  //in interface we put implement class //this time in ownerservicemap wasnt @service annotation,
 												//so we have to create by new.
@@ -33,7 +37,15 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+		
+		PetType dog = new PetType();
+		dog.setName("Dog");
+		PetType saveDogPetType = petTypeService.save(dog);
+		
+		PetType cat = new PetType();
+		cat.setName("Cat");
+		PetType saveCatPetType = petTypeService.save(cat);
+		
 		Owner owner1 = new Owner();
 		owner1.setFirstName("urmi");
 		owner1.setLastName("baroi");

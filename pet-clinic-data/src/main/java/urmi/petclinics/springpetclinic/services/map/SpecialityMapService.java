@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import urmi.petclinics.springpetclinic.model.Pet;
 import urmi.petclinics.springpetclinic.model.Speciality;
-import urmi.petclinics.springpetclinic.services.SpecialitiesService;
+import urmi.petclinics.springpetclinic.services.SpecialityService;
 
 @Service
-public class SpecialityMapService extends AbstractionMapService<Speciality, Long>  implements SpecialitiesService{
+public class SpecialityMapService extends AbstractionMapService<Speciality, Long>  implements SpecialityService{
 
 	@Override
 	public Speciality findById(Long id) {

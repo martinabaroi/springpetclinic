@@ -5,14 +5,22 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import urmi.petclinics.springpetclinic.model.Pet;
+import urmi.petclinics.springpetclinic.model.Speciality;
 import urmi.petclinics.springpetclinic.model.Vet;
 import urmi.petclinics.springpetclinic.services.CrudService;
+import urmi.petclinics.springpetclinic.services.SpecialityService;
 import urmi.petclinics.springpetclinic.services.VetService;
 
 
 @Service
 public class VetServiceMap extends AbstractionMapService<Vet, Long> implements VetService {
 
+	private final SpecialityService specialityService;
+	
+	public VetServiceMap(SpecialityService specialityService) {
+		this.specialityService = specialityService;
+	}
+	
 	@Override
 	public Vet findById(Long id) {
 		Vet vet = super.findById(id);
@@ -21,8 +29,20 @@ public class VetServiceMap extends AbstractionMapService<Vet, Long> implements V
 
 	@Override
 	public Vet save(Vet object) {
-		Vet vet = super.save( object);
-		return vet;
+//		Vet vet = super.save( object);
+//		return vet;
+		
+		if(object.getSpecialities().size() > 0) {
+			Set<Speciality> specialities = object.getSpecialities();
+					specialities.forEach(speciality -> {
+				if(speciality.getId() == null) {
+					Speciality savedSpeciality = specialityService.save(speciality);
+					speciality.setId(savedSpeciality.getId());
+				}
+			});
+		}
+		
+		return super.save( object);
 	}
 
 	@Override

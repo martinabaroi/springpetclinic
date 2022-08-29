@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 import urmi.petclinics.springpetclinic.model.Owner;
 import urmi.petclinics.springpetclinic.model.Pet;
 import urmi.petclinics.springpetclinic.model.PetType;
+import urmi.petclinics.springpetclinic.model.Speciality;
 import urmi.petclinics.springpetclinic.model.Vet;
 import urmi.petclinics.springpetclinic.services.OwnerService;
 import urmi.petclinics.springpetclinic.services.PetTypeService;
+import urmi.petclinics.springpetclinic.services.SpecialityService;
 import urmi.petclinics.springpetclinic.services.VetService;
 import urmi.petclinics.springpetclinic.services.map.OwnerServiceMap;
 import urmi.petclinics.springpetclinic.services.map.VetServiceMap;
@@ -26,11 +28,13 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	private final OwnerService ownerService;    //interface 
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
+	private final SpecialityService specialityService;
 	
-	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService ) {
+	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
 		this.ownerService = ownerService; //here we just inject and by@service annotation spring put ownerservicemap here.
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
+		this.specialityService = specialityService;
 		
 //		ownerService = new OwnerServiceMap();  //in interface we put implement class //this time in ownerservicemap wasnt @service annotation,
 												//so we have to create by new.
@@ -41,6 +45,16 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	@Override
 	public void run(String... args) throws Exception {
 		
+		int count = petTypeService.findAll().size();
+		
+		if(count == 0) {
+			loadData();
+			
+		}
+		
+	}
+
+	private void loadData() {
 		PetType dog = new PetType();
 		dog.setName("Dog");
 		PetType saveDogPetType = petTypeService.save(dog);  //save in map
@@ -48,6 +62,20 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		PetType cat = new PetType();
 		cat.setName("Cat");
 		PetType saveCatPetType = petTypeService.save(cat);
+		
+		
+		Speciality radiology = new Speciality();
+		radiology.setDiscrption("Radiology");	
+		Speciality savedRadiology = specialityService.save(radiology);   //savedRadiology = id,String
+		
+		Speciality surgery = new Speciality();
+		surgery.setDiscrption("surgery");
+		Speciality savedSurgery= specialityService.save(surgery);
+		
+		Speciality dentistry = new Speciality();
+		dentistry.setDiscrption("dentistry");
+		Speciality savedDentistry= specialityService.save(dentistry);
+		
 		
 		Owner owner1 = new Owner();
 		owner1.setFirstName("urmi");
@@ -90,21 +118,18 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		Vet vet1 = new Vet();
 		vet1.setFirstName("pussy");
 		vet1.setLastName("dog");
+		vet1.getSpecialities().add(savedRadiology);
 		
 		vetService.save(vet1);
 		
 		Vet vet2 = new Vet();
 		vet2.setFirstName("lussy");
 		vet2.setLastName("cat");
+		vet2.getSpecialities().add(savedSurgery);
 		
 		vetService.save(vet2);
 		
 		System.out.println("Loaded vets");
-		
-		
-		
-		
-		
 	}
 
 }

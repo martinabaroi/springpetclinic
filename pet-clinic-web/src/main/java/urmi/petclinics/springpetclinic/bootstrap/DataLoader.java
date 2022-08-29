@@ -1,9 +1,12 @@
 package urmi.petclinics.springpetclinic.bootstrap;
 
+import java.time.LocalDate;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import urmi.petclinics.springpetclinic.model.Owner;
+import urmi.petclinics.springpetclinic.model.Pet;
 import urmi.petclinics.springpetclinic.model.PetType;
 import urmi.petclinics.springpetclinic.model.Vet;
 import urmi.petclinics.springpetclinic.services.OwnerService;
@@ -40,7 +43,7 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		
 		PetType dog = new PetType();
 		dog.setName("Dog");
-		PetType saveDogPetType = petTypeService.save(dog);
+		PetType saveDogPetType = petTypeService.save(dog);  //save in map
 		
 		PetType cat = new PetType();
 		cat.setName("Cat");
@@ -49,11 +52,34 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		Owner owner1 = new Owner();
 		owner1.setFirstName("urmi");
 		owner1.setLastName("baroi");
+		owner1.setAddress("639 chestnut");
+		owner1.setCity("oxford");
+		owner1.setTelephone("12453");
+		
+		Pet mikesPet = new Pet();
+		mikesPet.setPetType(saveDogPetType);
+		mikesPet.setOwner(owner1);
+		mikesPet.setBirthDate(LocalDate.now());
+		mikesPet.setName("Rosco");
+		owner1.getPets().add(mikesPet); //bring Set<Pet> by getpets() . than in sets, add pet
+		
+		
 		ownerService.save(owner1);
 		
 		Owner owner2 = new Owner();
 		owner2.setFirstName("sunny");
 		owner2.setLastName("pereira");
+		owner2.setAddress("180 college ave");
+		owner2.setCity("eaton");
+		owner2.setTelephone("929292");
+		
+		Pet fionasCat = new Pet();
+		fionasCat.setName("Just Cat");
+		fionasCat.setOwner(owner2);
+		fionasCat.setBirthDate(LocalDate.now());
+		fionasCat.setPetType(saveCatPetType);
+		owner2.getPets().add(fionasCat);
+		
 		ownerService.save(owner2);
 		
 //		Owner owner3 = null;

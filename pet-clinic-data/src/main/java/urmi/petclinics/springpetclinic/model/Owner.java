@@ -1,13 +1,14 @@
 package urmi.petclinics.springpetclinic.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
-public class Owner extends Person {   //id, firstname, lastname , pets
+public class Owner extends Person {   //id, firstname, lastname , 
 
 	private String address;
 	private String city;
 	private String telephone;
-	private Set<Pet> pets;  //pets= pettype , owner, birthdate
+	private Set<Pet> pets = new HashSet<Pet>();  
 	
 	
 	public String getAddress() {

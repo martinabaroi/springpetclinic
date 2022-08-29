@@ -3,12 +3,21 @@ package urmi.petclinics.springpetclinic.model;
 import java.time.LocalDate;
 
 public class Pet extends BaseEntity  {
-		
-	private PetType petType; //name
+	
+	private String name;
+	private PetType petType; 
 	private Owner owner;
 	private LocalDate birthDate;
 	
 	
+	
+	
+	public String getName(String name) {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public PetType getPetType() {
 		return petType;
 	}

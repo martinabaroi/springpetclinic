@@ -9,7 +9,7 @@ import urmi.petclinics.springpetclinic.services.CrudService;
 import urmi.petclinics.springpetclinic.services.OwnerService;
 
 
-@Service
+@Service  //can't write service in interface class.only have to write in implement class
 public class OwnerServiceMap extends AbstractionMapService<Owner, Long> implements OwnerService {
 
 	@Override

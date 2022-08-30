@@ -45,13 +45,13 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	@Override
 	public void run(String... args) throws Exception {
 		
-		int count = petTypeService.findAll().size();
+		int count = petTypeService.findAll().size(); //by findall will get set of pettype //by size will get pettype size of which got from findall
 		
-		if(count == 0) {
-			loadData();
-			
+		if(count == 0) { //when we start out program first type, than count will  be 0 , than loadData method will run. // second type count wont be 0
+			loadData(); 	
 		}
-		
+	//this formula written so that when we save in database this loadData method can run only one time, because there willl be save data permanantly.
+	// but here we save in map so how many time we run this app, always count will be 0 beacuse data saved in map temporary and everytime we save this data when will run.
 	}
 
 	private void loadData() {
@@ -116,15 +116,15 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		System.out.println("Loaded owners");
 		
 		Vet vet1 = new Vet();
-		vet1.setFirstName("pussy");
-		vet1.setLastName("dog");
+		vet1.setFirstName("Cathi");
+		vet1.setLastName("pola");
 		vet1.getSpecialities().add(savedRadiology);
 		
 		vetService.save(vet1);
 		
 		Vet vet2 = new Vet();
-		vet2.setFirstName("lussy");
-		vet2.setLastName("cat");
+		vet2.setFirstName("Paul");
+		vet2.setLastName("karli");
 		vet2.getSpecialities().add(savedSurgery);
 		
 		vetService.save(vet2);

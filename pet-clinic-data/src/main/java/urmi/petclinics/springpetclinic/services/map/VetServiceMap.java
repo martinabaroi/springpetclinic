@@ -32,17 +32,17 @@ public class VetServiceMap extends AbstractionMapService<Vet, Long> implements V
 //		Vet vet = super.save( object);
 //		return vet;
 		
-		if(object.getSpecialities().size() > 0) {
+		if(object.getSpecialities().size() > 0) {  //if a vet, have one and more specialities
 			Set<Speciality> specialities = object.getSpecialities();
 					specialities.forEach(speciality -> {
-				if(speciality.getId() == null) {
+				if(speciality.getId() == null) {  //if speciality didnt have any id thats mean this speciality didnt save before .so have to save Speciality for getting id.
 					Speciality savedSpeciality = specialityService.save(speciality);
 					speciality.setId(savedSpeciality.getId());
 				}
 			});
 		}
 		
-		return super.save( object);
+		return super.save( object); //here save vet object.
 	}
 
 	@Override

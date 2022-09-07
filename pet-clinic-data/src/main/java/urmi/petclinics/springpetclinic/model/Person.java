@@ -1,15 +1,19 @@
 package urmi.petclinics.springpetclinic.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+
+
+@MappedSuperclass
 public class Person extends BaseEntity {
 
-	private static final long serialVersionUID = 8314456677110935145L;
+	@Column(name = "first_name")
 	private String firstName;
+	
+	@Column(name = "last_name")
 	private String lastName;
 	
-	public Person() {
-		super();
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}

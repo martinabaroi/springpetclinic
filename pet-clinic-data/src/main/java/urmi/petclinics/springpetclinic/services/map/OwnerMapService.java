@@ -13,13 +13,13 @@ import urmi.petclinics.springpetclinic.services.PetTypeService;
 
 
 @Service  //can't write service in interface class.only have to write in implement class
-public class OwnerServiceMap extends AbstractionMapService<Owner, Long> implements OwnerService {
+public class OwnerMapService extends AbstractionMapService<Owner, Long> implements OwnerService {
 	
 	
 	private final PetTypeService petTypeService;
 	private final PetService petService;
 	
-	public OwnerServiceMap(PetTypeService petTypeService, PetService petService ) {
+	public OwnerMapService(PetTypeService petTypeService, PetService petService ) {
 		this.petTypeService = petTypeService;
 		this.petService = petService;
 	}
@@ -27,7 +27,7 @@ public class OwnerServiceMap extends AbstractionMapService<Owner, Long> implemen
 
 	@Override
 	public Owner findById(Long id) {
-		Owner owner = super.findById(id);  //super is used to call a super class's method.
+		Owner owner = super.findById(id);  //super is used to call a super class's method. super class is abstraction class
 		return owner;
 	}
 

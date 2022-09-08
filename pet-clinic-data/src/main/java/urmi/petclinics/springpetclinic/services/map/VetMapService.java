@@ -13,11 +13,11 @@ import urmi.petclinics.springpetclinic.services.VetService;
 
 
 @Service
-public class VetServiceMap extends AbstractionMapService<Vet, Long> implements VetService {
+public class VetMapService extends AbstractionMapService<Vet, Long> implements VetService {
 
 	private final SpecialityService specialityService;
 	
-	public VetServiceMap(SpecialityService specialityService) {
+	public VetMapService(SpecialityService specialityService) {
 		this.specialityService = specialityService;
 	}
 	

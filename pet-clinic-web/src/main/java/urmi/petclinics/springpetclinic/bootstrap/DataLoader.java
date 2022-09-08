@@ -88,6 +88,8 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		owner1.setCity("oxford");
 		owner1.setTelephone("12453");
 		
+		//here dont need to save pet because in owner class's pet properties we said cascadetype.all. 
+		//so when we save pet in owner automatically pet saved in pet table.
 		Pet mikesPet = new Pet();
 		mikesPet.setPetType(saveDogPetType);
 		mikesPet.setOwner(owner1);

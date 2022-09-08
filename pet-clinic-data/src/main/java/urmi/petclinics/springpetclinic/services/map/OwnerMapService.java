@@ -2,6 +2,7 @@ package urmi.petclinics.springpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import urmi.petclinics.springpetclinic.model.Owner;
@@ -13,6 +14,7 @@ import urmi.petclinics.springpetclinic.services.PetTypeService;
 
 
 @Service  //can't write service in interface class.only have to write in implement class
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractionMapService<Owner, Long> implements OwnerService {
 	
 	

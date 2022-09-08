@@ -2,6 +2,7 @@ package urmi.petclinics.springpetclinic.services.map;
 
 import java.util.Set;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import urmi.petclinics.springpetclinic.model.Pet;
@@ -9,6 +10,7 @@ import urmi.petclinics.springpetclinic.model.Speciality;
 import urmi.petclinics.springpetclinic.services.SpecialityService;
 
 @Service
+@Profile({"default", "map"})
 public class SpecialityMapService extends AbstractionMapService<Speciality, Long>  implements SpecialityService{
 
 	@Override

@@ -12,7 +12,7 @@ import urmi.petclinics.springpetclinic.services.PetService;
 
 
 @Service
-public class PetServiceMap extends AbstractionMapService<Pet, Long> implements PetService {
+public class PetMapService extends AbstractionMapService<Pet, Long> implements PetService {
 
 	@Override
 	public Pet findById(Long id) {

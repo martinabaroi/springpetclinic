@@ -10,12 +10,14 @@ import urmi.petclinics.springpetclinic.model.Pet;
 import urmi.petclinics.springpetclinic.model.PetType;
 import urmi.petclinics.springpetclinic.model.Speciality;
 import urmi.petclinics.springpetclinic.model.Vet;
+import urmi.petclinics.springpetclinic.model.Visit;
 import urmi.petclinics.springpetclinic.services.OwnerService;
 import urmi.petclinics.springpetclinic.services.PetTypeService;
 import urmi.petclinics.springpetclinic.services.SpecialityService;
 import urmi.petclinics.springpetclinic.services.VetService;
-import urmi.petclinics.springpetclinic.services.map.OwnerServiceMap;
-import urmi.petclinics.springpetclinic.services.map.VetServiceMap;
+import urmi.petclinics.springpetclinic.services.VisitService;
+import urmi.petclinics.springpetclinic.services.map.OwnerMapService;
+import urmi.petclinics.springpetclinic.services.map.VetMapService;
 
 
 @Component
@@ -29,12 +31,14 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialityService specialityService;
+	private final VisitService visitService;
 	
-	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
 		this.ownerService = ownerService; //here we just inject and by@service annotation spring put ownerservicemap here.
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialityService = specialityService;
+		this.visitService = visitService;
 		
 //		ownerService = new OwnerServiceMap();  //in interface we put implement class //this time in ownerservicemap wasnt @service annotation,
 												//so we have to create by new.
@@ -109,6 +113,13 @@ public class DataLoader implements CommandLineRunner { //here CommandLineRunner 
 		owner2.getPets().add(fionasCat);
 		
 		ownerService.save(owner2);
+		
+		Visit catVisit = new Visit();
+		catVisit.setPet(fionasCat);
+		catVisit.setDate(LocalDate.now());
+		catVisit.setDiscription("snizzy kitty");
+		
+		visitService.save(catVisit);
 		
 //		Owner owner3 = null;
 //		ownerService.save(owner3); //exception will be thrown. we didnt catch that exception so app wont run again. 
